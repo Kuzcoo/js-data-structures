@@ -167,5 +167,14 @@ describe('Linked List', () => {
       assert.equal(linkedList.indexOf('Hello'), 2);
       assert.equal(linkedList.indexOf('Kikoo'), 3);
     });
+
+    it('should increase the link list size when a node is added', () => {
+      linkedList.add('Plop');
+      linkedList.add('Kikoo');
+
+      assert.equal(linkedList.size(), 2);
+      linkedList.addAt(1, 'Yup');
+      assert.equal(linkedList.size(), 3);
+    });
   });
 });

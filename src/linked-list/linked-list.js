@@ -3,7 +3,6 @@ import Node from './node';
 class LinkedList {
   constructor() {
     this.head = null;
-    this.tail = null;
     this.length = 0;
   }
 
@@ -12,18 +11,23 @@ class LinkedList {
   }
 
   add(name) {
-    this.length++;    
+    var currentNode = this.head;
+    let newNode = new Node(name);
 
-    if (!this.head) {
-      this.head = new Node(name);
-      this.tail = this.head;
-      return this.tail;
+    this.length++;   
+
+    if (!currentNode) {
+      this.head = newNode;
+      return newNode;
     }
 
-    this.tail.next = new Node(name);
-    this.tail = this.tail.next;
+    while (currentNode.next) {
+      currentNode = currentNode.next;
+    }
 
-    return this.tail;
+    currentNode.next = newNode;
+
+    return newNode;
   }
 
   remove(name) {
@@ -99,6 +103,8 @@ class LinkedList {
     if (index < 0 || index > this.size()) {
       return false;
     }
+
+    this.length++;
 
     if (index === 0) {
       newNode.next = this.head;
